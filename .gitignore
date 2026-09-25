@@ -1,0 +1,17 @@
+# Data: large, partly partner-owned; never commit (see README "Data")
+data/
+
+# Reference PDFs, kept locally for reading
+docs/swy/literature_pdfs/
+
+# Private correspondence drafts (contain personal matters)
+docs/swy/message_*becky*.md
+
+# Local tool files
+*.qgz
+__pycache__/
+.venv/
+*.pyc
+.Rproj.user/
+.quarto/
+docs/**/*_files/

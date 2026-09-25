@@ -1,0 +1,11 @@
+# Local analysis environment (inputs, Kc/CN builds, comparisons, figures, map).
+# Model runs (09_*) use the Docker image built from Python_scripts/swy_borneo_run/Dockerfile,
+# which installs inspring and GDAL itself.
+numpy
+pandas
+rasterio
+geopandas
+shapely
+matplotlib
+pillow
+requests
