@@ -38,13 +38,59 @@ current chain).
 
 ## Running
 
-All scripts are run from the repository root; paths inside them are relative to it.
+Commands below are for Git Bash on Windows (the setup this was built on), run from the repository
+root; every script uses paths relative to the root. On macOS/Linux, drop `MSYS_NO_PATHCONV=1` and
+use `.venv/bin/` instead of `.venv/Scripts/`.
 
-- **Analysis** (fetches, CN/Kc builds, comparisons, figures): a Python environment with
-  `requirements.txt`.
-- **Model runs** (`09*`): Docker. Build the image from `Python_scripts/swy_borneo_run/Dockerfile`
-  (tag used here: `swy_borneo_run:rainfix4`), start Docker Desktop, then run the command given in
-  each `09*` script's docstring. A Philippines run takes about 1.5 hours.
+### 1. Python environment (everything except the model runs)
+
+```bash
+python -m venv .venv
+.venv/Scripts/python -m pip install -r requirements.txt
+```
+
+### 2. Docker image (model runs only)
+
+Start Docker Desktop, then build the image. The tag matters: the run scripts' docstrings use
+`swy_borneo_run:rainfix4`.
+
+```bash
+docker build -t swy_borneo_run:rainfix4 -f Python_scripts/swy_borneo_run/Dockerfile Python_scripts/swy_borneo_run
+```
+
+The image starts from `therealspring/global_ncp-computational-environment` (Docker Hub), clones
+`inspring`, and patches two bugs in its spatially distributed rain-events code (details in the
+Dockerfile's header).
+
+### 3. A model run
+
+Each `09*` script is one run, with its own workspace under `data/swy/philippines/`. Example, our
+current parameter set:
+
+```bash
+MSYS_NO_PATHCONV=1 docker run --rm -w /scripts_root -e SWY_DATA_ROOT=/scripts_root/data     --mount type=bind,source="$(pwd)",target=/scripts_root swy_borneo_run:rainfix4     micromamba run -n geopy311 python /scripts_root/Python_scripts/swy_philippines_run/09n_run_swy_ph_paddy_kc.py
+```
+
+A Philippines run takes about 1.5 hours. Tracebacks about `currentThread` / `cannot join current
+thread` at the end of the log are harmless shutdown noise from `taskgraph`; a successful run ends
+with `DONE — outputs in ...`.
+
+### 4. Reproducing the current results
+
+All in `Python_scripts/swy_philippines_run/`, assuming `data/` is in place (see Data):
+
+| Step | Scripts | Environment |
+|---|---|---|
+| Our CN table | `07b` | Python |
+| Our Kc rasters | `07d` → `07e` → `07f` → `07g` → `07h` (optional check: `07i`) | Python |
+| Model runs | `09h` (reference), `09n` (ours), `09m`, `09f` (CN/Kc swaps) | Docker |
+| Comparison figures and tables | `20` | Python |
+| Interactive map | `10c` → `10e` → (`10f`, test layers) → `11` | Python |
+| Report | `quarto render docs/reports/swy/swy_status_report.qmd` | Quarto |
+
+Global scoping (`Python_scripts/swy_global_scoping/01` → `02`) only needs the MapSPAM and
+Köppen-Geiger data in `data/swy/shared/`. Which run is which, and what each figure shows:
+`docs/reports/swy/FIGURES.md`.
 
 ## Data
 
