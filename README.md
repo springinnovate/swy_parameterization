@@ -12,9 +12,10 @@ The Philippines comparison (WWF-SIPA's regional run as the benchmark) establishe
 
 - **The pipeline is sound.** WWF-SIPA's own CN and Kc run through this pipeline at 90m reproduce
   their 30m run (r=0.92 for quickflow and baseflow). That run is the reference for all comparisons.
-- **Global data gets most land cover close.** GCN250 CN plus per-pixel monthly Kc from published
-  calibrations gives baseflow 1.03x the reference overall (r=0.66).
-- **The remaining gap is cropland CN**, mostly paddy rice (annual crop baseflow 2.0x; the
+- **Global data matches the overall total, not the classes.** GCN250 CN plus per-pixel monthly Kc
+  from published calibrations gives baseflow 1.03x the reference overall (r=0.66), but class errors
+  cancel out: forest baseflow is 1.3-1.4x the reference, shrubs and grassland about 0.6-0.7x, annual crop (mostly paddy rice) 2.0x; only perennial crop is close (0.9x).
+- **Cropland's gap is mostly CN**, mostly paddy rice (annual crop baseflow 2.0x; the
   reference's CN alone brings it to 1.25x). No global CN source describes flooded paddies.
 - **Proposed path to a global run:** global defaults, a cropland lookup table keyed by climate zone
   x crop group x water regime (9 combinations cover 80% of global crop area), sensitivity ranges

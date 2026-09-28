@@ -8,10 +8,10 @@ is built beyond the scoping step.
 
 - **The pipeline is sound.** WWF-SIPA's own CN and Kc, run through this pipeline at 90m, reproduce
   their 30m run (r=0.92 for quickflow and baseflow). That run is the reference for everything below.
-- **Global data gets most classes close.** With GCN250 CN and per-pixel monthly Kc from published
-  calibrations (Negrón Juárez 2008 forest, Oliveira 2015 grassland/shrub, Kamble 2013 on NDVI
-  elsewhere), baseflow is 1.06x the reference overall; forest is about 1.3x, most other classes
-  closer.
+- **Global data matches the overall total, not the classes.** With GCN250 CN and per-pixel monthly
+  Kc from published calibrations (Negrón Juárez 2008 forest, Oliveira 2015 grassland/shrub, Kamble
+  2013 on NDVI elsewhere), baseflow is about 1.03x the reference overall, but class errors cancel
+  out: forest baseflow is 1.3-1.4x the reference, shrubs and grassland about 0.6-0.7x, annual crop (mostly paddy rice) 2.0x; only perennial crop is close (0.9x).
 - **The error concentrates in cropland, and there it's mostly CN.** Annual crop (mostly paddy rice)
   baseflow is 2.28x the reference. Swapping in WWF-SIPA's CN alone brings it to 1.25x; swapping in
   their Kc alone, to 1.91x. Their annual crop CN (67/78/85/89) is the TR-55 row-crop value; GCN250

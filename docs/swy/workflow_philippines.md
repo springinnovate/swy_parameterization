@@ -29,7 +29,7 @@ flowchart TD
     end
 
     subgraph RESULT["Comparison against the reference (20)"]
-        OVERALL["Baseflow 1.03x overall (r=0.66)<br/>forest ~1.3x, most classes close"]:::done
+        OVERALL["Baseflow 1.03x overall (r=0.66), but class errors cancel:<br/>forest ~1.3-1.4x, shrub/grass ~0.6-0.7x"]:::done
         CROP["Gap concentrated in annual crop (2.0x)<br/>her CN alone brings it to 1.25x:<br/>cropland CN is the main open problem"]:::done
     end
 
@@ -78,8 +78,8 @@ the reference for every comparison.
 using the closest published calibration for each land-cover type, plus a paddy rice Kc for annual
 crop.
 
-**The result points to one place.** Overall baseflow is close to the reference (1.03x), but annual
-crop is 2.0x, and swapping in WWF-SIPA's CN alone brings it to 1.25x. Cropland CN is the main open
+**The overall total matches, the classes don't.** Overall baseflow is close to the reference (1.03x)
+because class errors cancel (forest high, shrubs and grassland low), and annual crop is 2.0x, and swapping in WWF-SIPA's CN alone brings it to 1.25x. Cropland CN is the main open
 problem; the global cropland table (climate x crop group x water regime) is the proposed way to
 handle it at global scale, scoped in `docs/swy/global_cropland_parameterization_plan.md`.
 

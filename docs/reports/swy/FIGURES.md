@@ -18,7 +18,7 @@ Baseflow is roughly what soaks in minus what vegetation uses, so it depends on b
 | Run | CN | Kc | Why it was run | What it showed |
 |---------------|---------------|---------------|---------------|---------------|
 | **Reference** | hers | hers | Checks the pipeline: WWF-SIPA's own parameters, run through our pipeline at 90m | Reproduces WWF-SIPA's 30m run closely (r=0.92 for quickflow and baseflow). Used as the reference for every comparison below, so differences reflect only the CN/Kc choice |
-| **Ours** | ours | ours | Our global-data parameters as they stand | Baseflow 1.03x the reference overall (r=0.66). Most classes close; forest about 1.3x; annual crop 2.0x |
+| **Ours** | ours | ours | Our global-data parameters as they stand | Baseflow 1.03x the reference overall (r=0.66), but class errors cancel: forest 1.3-1.4x, shrubs/grassland 0.6-0.7x, perennial crop close; annual crop 2.0x |
 | **Her CN + our Kc** | hers | ours | Isolates the effect of CN: only Kc differs from the reference | Annual crop drops to 1.25x. So most of the annual crop gap comes from CN |
 | **Our CN + her Kc** | ours | hers | Isolates the effect of Kc: only CN differs from the reference | Annual crop stays high (1.9x). Each class lines up on its own straight band, offset by the CN difference |
 

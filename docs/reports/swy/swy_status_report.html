@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-09-25">
+<meta name="dcterms.date" content="2026-09-28">
 
 <title>Seasonal Water Yield: Philippines Kc/CN comparison</title>
 <style>
@@ -3144,7 +3144,7 @@ table:not(.swy-popup-table):not(.terms) th { background: rgba(0, 0, 0, 0.035); }
 <h1 class="title">Seasonal Water Yield: Philippines Kc/CN comparison</h1>
 <p class="subtitle">WWF-SIPA’s CN/Kc vs. this project’s global-data CN/Kc, same model and inputs</p>
 
-<p class="date">25 September 2026</p>
+<p class="date">28 September 2026</p>
 </header>
 
 
@@ -3152,7 +3152,7 @@ table:not(.swy-popup-table):not(.terms) th { background: rgba(0, 0, 0, 0.035); }
 <p>Global NCP — SWY Status Memo</p>
 </div>
 <div class="meta">
-<p>Prepared by Jerónimo Rodríguez Escobar Global Science, WWF 25 September 2026</p>
+<p>Prepared by Jerónimo Rodríguez Escobar Global Science, WWF 28 September 2026</p>
 </div>
 <div class="report-footer" style="margin-bottom: 1.5em;">
 <p><strong>Reference run</strong> = WWF-SIPA’s own CN and Kc run through this project’s pipeline on the 90m DEM. It reproduces WWF-SIPA’s original 30m run closely (r=0.92 for quickflow and baseflow) and sits on the same grid as every other run here, so comparisons against it isolate the CN/Kc choice. <strong>Our run</strong> = the same pipeline and inputs with this project’s CN and Kc.</p>
@@ -3162,7 +3162,7 @@ table:not(.swy-popup-table):not(.terms) th { background: rgba(0, 0, 0, 0.035); }
 <p>Two questions: <strong>(1) does the pipeline run the model correctly? (2) where our results differ, why, and can global data close the gap?</strong></p>
 <h2 id="main-outcome">Main outcome</h2>
 <p><strong>(1) The pipeline works.</strong> WWF-SIPA’s own CN and Kc, run through our pipeline at 90m, reproduce their 30m results closely (r=0.92 for quickflow and baseflow). That run is now the reference for everything below.</p>
-<p><strong>(2) The remaining gap is concentrated in cropland.</strong> With our CN and our current Kc (per pixel, plus a paddy rice Kc on annual crop), baseflow is 1.03x the reference overall (r=0.66), and quickflow 0.78x (r=0.67). Most classes are close or moderately off (forest about 1.3x). Annual crop, a fifth of the area and mostly paddy rice, is the exception: baseflow 2.0x the reference, quickflow about half. Most of that is CN: GCN250’s cropland CN sits about 10 points below WWF-SIPA’s, which matches the TR-55 row-crop value. Neither table describes bunded, flooded paddy fields.</p>
+<p><strong>(2) The overall total matches, the classes don’t.</strong> With our CN and our current Kc (per pixel, plus a paddy rice Kc on annual crop), baseflow is 1.03x the reference overall (r=0.66), and quickflow 0.78x (r=0.67). That total hides class errors that cancel out: forest baseflow comes out 1.3-1.4x the reference, shrubs and grassland about 0.6-0.7x, and only perennial crop is close (0.9x). Annual crop, a fifth of the area and mostly paddy rice, is the largest single deviation: baseflow 2.0x the reference, quickflow about half. Most of that is CN: GCN250’s cropland CN sits about 10 points below WWF-SIPA’s, which matches the TR-55 row-crop value. Neither table describes bunded, flooded paddy fields.</p>
 <p>This is a model-to-model comparison, not a validation against observations. Whether WWF-SIPA’s run has itself been validated against Philippine hydrology is still an open question.</p>
 <div class="diagram-card">
 <div class="cell" data-layout-align="default">
@@ -3196,7 +3196,7 @@ flowchart TD
     end
 
     subgraph RESULT[&quot;Comparison against the reference (20)&quot;]
-        OVERALL[&quot;Baseflow 1.03x overall (r=0.66)&lt;br/&gt;forest ~1.3x, most classes close&quot;]:::done
+        OVERALL[&quot;Baseflow 1.03x overall (r=0.66), but class errors cancel:&lt;br/&gt;forest ~1.3-1.4x, shrub/grass ~0.6-0.7x&quot;]:::done
         CROP[&quot;Gap concentrated in annual crop (2.0x)&lt;br/&gt;her CN alone brings it to 1.25x:&lt;br/&gt;cropland CN is the main open problem&quot;]:::done
     end
 
@@ -3754,7 +3754,7 @@ Quickflow depends on CN only; Kc doesn’t enter it. Every run with WWF-SIPA’s
 </table>
 <p>QF is set by CN alone, and our CN gives less quickflow than WWF-SIPA’s on both crop classes. Baseflow is what remains after quickflow and evapotranspiration, so it reflects both parameters. Swapping in WWF-SIPA’s CN alone brings annual crop baseflow from 2.28x to 1.25x the reference; swapping in their Kc alone only to 1.91x. CN carries most of the cropland gap. Kc accounts for the rest of the pattern: with WWF-SIPA’s CN, forest sits above the reference (our Kc 0.84 against their flat 1.0) and perennial crop below it (0.99 against 0.70). A paddy rice Kc for annual crop (FAO-56 rice curve on the Sacks calendar, weighted by MapSPAM rice share) brings annual crop to 1.99x, about as far as WWF-SIPA’s whole Kc does; what remains for cropland is CN.</p>
 <h2 id="where-this-puts-us-path-to-a-global-run">Where this puts us — path to a global run</h2>
-<p><strong>Accomplished.</strong> The pipeline reproduces WWF-SIPA’s results with their parameters. Global-data parameters get most land-cover classes within about 30% of their regionally-set run, with per-pixel Kc from published calibrations for forest, grassland/shrub and everything else. The remaining gap is traced to one place: cropland CN, mostly paddy rice.</p>
+<p><strong>Accomplished.</strong> The pipeline reproduces WWF-SIPA’s results with their parameters. Global-data parameters, with per-pixel Kc from published calibrations for forest, grassland/shrub and everything else, match the overall total of their regionally-set run, but classes are off by 30-40% in both directions (forest high, shrubs and grassland low) and annual cropland by 2x. The swaps identify the drivers: CN for cropland (mostly paddy rice), Kc for forest.</p>
 <p><strong>What a global run still needs.</strong> A universal calibrated parameter set isn’t realistic: the CN literature is mostly site calibrations that don’t combine into a global product. The proposal instead:</p>
 <ol type="1">
 <li><strong>Global defaults</strong> for all land, as used here (GCN250 CN, satellite-based Kc per pixel).</li>
